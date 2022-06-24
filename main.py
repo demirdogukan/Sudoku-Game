@@ -19,6 +19,9 @@ class Game:
         self.board_surface = pg.Surface((self.sur_offsetX, self.sur_offsetY))
         self.board_surface.fill(pg.Color("white"))
 
+        # UI Parts
+        self.btn_solve = pg.Rect(275, 650, 150, 50)
+
         self.draw()
         self.start()
 
@@ -30,9 +33,15 @@ class Game:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     run = False
+
                 if event.type == pg.MOUSEBUTTONDOWN:
                     x, y = pg.mouse.get_pos()
                     norm_pos = self.fix_pos(x, y)
+                
+                    if 275 < x < 425 and 650 < y < 700:
+                        print("Button clicked")
+                        self.engine.solve(0, 0)
+
                     self.draw()
                     if self.is_pos_valid(norm_pos):
                         self.color_squares(norm_pos)
@@ -47,6 +56,9 @@ class Game:
             self.WIN.blit(self.board_surface, 
                          (SQ_SIZE + SQ_SIZE / 2, 
                           SQ_SIZE + SQ_SIZE / 4))
+
+            pg.draw.rect(self.WIN, pg.Color("Red"), self.btn_solve)
+            draw_text(self.WIN, "SOLVE", 48, (WHITE), (150, 650))
 
             self.clock.tick(60)
             pg.display.update()
@@ -118,10 +130,6 @@ class Game:
         # Gets valid and invalid squares by game engine
         val_squares, inval_squares = self.engine.get_relative_pos(selected_pos[0], selected_pos[1], number)   
 
-        print(val_squares)
-        print("***********")
-        print(inval_squares)
-
         # Color valid squares
         for row, col in val_squares:
             if (row, col) != selected_pos:
@@ -142,6 +150,7 @@ class Game:
         board[row][col] = number
         self.color_squares(selected_pos, number)
 
+    
 
 if __name__ == "__main__":
     g = Game()

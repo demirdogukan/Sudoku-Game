@@ -33,3 +33,45 @@ class GameEngine:
                     all_positions.append((corner_row + dr, corner_col + dc))
                     
         return all_positions, invalid_positions
+
+    def is_valid_move(self, row, col, number) -> bool:
+        
+        for i in range(9):
+            if board[row][i] == number:
+                return False
+                
+        for i in range(9):
+            if board[i][col] == number:
+                return False
+
+        corner_row = row - row % 3
+        corner_col = col - col % 3
+
+        for dx in range(3):
+            for dy in range(3):
+                if board[corner_row + dx][corner_col + dy] == number:
+                    return False
+
+        return True
+        
+    def solve(self, row, col):
+        
+        if col == 9:
+            if row == 8:
+                return True
+
+            row, col = row + 1, 0
+        
+        if board[row][col][-1] != "0":
+            return self.solve(row, col + 1)
+        
+        for num in range(1, 10):
+            if self.is_valid_move(row, col, str(num)):
+                board[row][col] = str(num)
+                if self.solve(row, col + 1):
+                    return True
+            
+            board[row][col] = "0"
+
+        # No possible solution
+        return False
