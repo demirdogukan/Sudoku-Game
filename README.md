@@ -16,7 +16,7 @@
 
 ## Meta
 
-Doğukan Demir – [@mastermachina](https://github.com/mastermachina) – slayerdogukan@gmail.com
+Doğukan Demir – [@demirdogukan](https://github.com/demirdogukan) – dogukan.demir@yahoo.com
 
 Telegram - Maestro_20
 
