@@ -18,6 +18,6 @@
 
 Doğukan Demir – [@demirdogukan](https://github.com/demirdogukan) – dogukan.demir@yahoo.com
 
-Telegram - Maestro_20
+Telegram - @demirdogukan
 
 ***Any licence won't be added and for using the game in your project just contact with me via telegram or mail***
