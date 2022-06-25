@@ -37,11 +37,11 @@ class GameEngine:
     def is_valid_move(self, row, col, number) -> bool:
         
         for i in range(9):
-            if board[row][i] == number:
+            if board[row][i][-1] == number:
                 return False
                 
         for i in range(9):
-            if board[i][col] == number:
+            if board[i][col][-1] == number:
                 return False
 
         corner_row = row - row % 3
@@ -49,7 +49,7 @@ class GameEngine:
 
         for dx in range(3):
             for dy in range(3):
-                if board[corner_row + dx][corner_col + dy] == number:
+                if board[corner_row + dx][corner_col + dy][-1] == number:
                     return False
 
         return True
